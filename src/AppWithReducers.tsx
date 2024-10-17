@@ -66,8 +66,6 @@ function App() {
     const todolistId1 = uuidv4()
     const todolistId2 = uuidv4()
 
-    // const [todolist2, dispatch] = useReducer(todolistsReducer, initialState)
-
     const tasksList = {
         [todolistId1]: [
             {id: uuidv4(), title: 'HTML&CSS', isDone: true},
@@ -112,7 +110,6 @@ function App() {
     }
 
     const changeFilter = (todolistId: string, filter: FilterValuesType) => {
-        // setTodolists(todolists.map((todo) => todo.id === todolistId ? {...todo, filter} : todo))
         dispathToTodolists(changeTodolistFilterAC(todolistId, filter))
     }
 

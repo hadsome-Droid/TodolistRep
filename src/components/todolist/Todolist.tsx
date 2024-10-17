@@ -10,8 +10,9 @@ import {Checkbox, IconButton} from "@mui/material";
 import Button from "@mui/material/Button";
 import Box from '@mui/material/Box'
 import {filterButtonsContainerSx, getListItemSx} from "./Todolist.styles.ts";
+import { FilterValuesType } from "../../AppWithRedux.tsx";
 
-export type FilterValuesType = 'all' | 'active' | 'completed'
+// export type FilterValuesType = 'all' | 'active' | 'completed'
 
 type Props = {
     todolistId: string
@@ -66,9 +67,16 @@ export const Todolist = ({
     const updateTodolistTitleHandler = (title: string) => {
         updateTodolistTitle(todolistId, title)
     }
+    const Title = () => {
+        const array = []
+
+        return <h1>{array.length && 'The title'}</h1>
+    }
+
     return (
         <div>
             <div className={'todolist-title-container'}>
+                {Title()}
                 <h3>
                     <EditableSpan value={title} onChange={updateTodolistTitleHandler}/>
                 </h3>

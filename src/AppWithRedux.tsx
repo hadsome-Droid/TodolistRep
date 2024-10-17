@@ -1,7 +1,6 @@
 import './App.css'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
-import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container';
@@ -17,7 +16,7 @@ import {AddItemForm} from "./components/AdditemForm.tsx";
 import {useTodolistsStore} from "./model/zust/todolists-zustan.ts";
 import {
     addTodolistAC, changeTodolistFilterAC,
-    initialState, removeTodolistAC,
+    removeTodolistAC,
     todolistsReducer,
     updateTodolistTitleAC
 } from "./model/reducer/todolists/todolists-reducer.ts";
@@ -29,7 +28,10 @@ import {
     removeTaskAC,
     tasksReducer
 } from "./model/reducer/tasks/tasksReducer.ts";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "./app/store.ts";
 
+export type FilterValuesType = 'all' | 'active' | 'completed'
 
 export type TaskProps = {
     id: string,
@@ -44,14 +46,18 @@ export type TodolistType = {
 }
 
 export type TasksStateType = {
-    [key: string]: TaskProps[]
+    [key: string]: Array<TaskProps>
 }
 
 type ThemeMode = 'dark' | 'light'
 
-function App2() {
+function App() {
     const test = useTodolistsStore()
-    // console.log(test)
+    const todolists = useSelector<RootState, TodolistType[]>(state => state.todolists)
+    const tasks = useSelector<RootState, TasksStateType>(state => state.tasks)
+    const dispatch = useDispatch()
+
+
     const [themeMode, setThemeMode] = useState<ThemeMode>('dark')
 
     const theme = createTheme({
@@ -85,48 +91,46 @@ function App2() {
         ]
     }
 
-    const [todolists, dispathToTodolists] = useReducer(todolistsReducer, [
-        {id: todolistId1, title: 'What to learn', filter: 'all'},
-        {id: todolistId2, title: 'Song of live', filter: 'all'},
-    ])
+    // const [todolists, dispathToTodolists] = useReducer(todolistsReducer, [
+    //     {id: todolistId1, title: 'What to learn', filter: 'all'},
+    //     {id: todolistId2, title: 'Song of live', filter: 'all'},
+    // ])
 
-    const [tasks, dispatchToTasks] = useReducer(tasksReducer, tasksList)
+    // const [tasks, dispatchToTasks] = useReducer(tasksReducer, tasksList)
 
     const addTask = (todolistId: string, title: string) => {
-        dispatchToTasks(addTackAC(todolistId, title))
+        dispatch(addTackAC({todolistId, title}))
     }
 
     const removeTask = (todolistId: string, taskId: string) => {
-        dispatchToTasks(removeTaskAC({todolistId, taskId}))
+        dispatch(removeTaskAC({todolistId, taskId}))
     }
 
     const changeTaskStatus = (todolistId: string, taskId: string, isDone: boolean) => {
 
-        dispatchToTasks(changeTaskStatusAC(todolistId, taskId, isDone))
+        dispatch(changeTaskStatusAC({todolistId, taskId, isDone}))
     }
 
     const updateTaskTitle = (todolistId: string, taskId: string, title: string) => {
-        dispatchToTasks(changeTaskTitleAC(todolistId, taskId, title))
+        dispatch(changeTaskTitleAC({todolistId, taskId, title}))
     }
 
     const changeFilter = (todolistId: string, filter: FilterValuesType) => {
-        dispathToTodolists(changeTodolistFilterAC(todolistId, filter))
+        dispatch(changeTodolistFilterAC({todolistId, filter}))
     }
 
     const removeTodolist = (todolistId: string) => {
         const action = removeTodolistAC(todolistId)
-        dispathToTodolists(action)
-        dispatchToTasks(action)
+        dispatch(action)
     }
 
     const addTodolist = (title: string) => {
         const action = addTodolistAC(title)
-        dispathToTodolists(action)
-        dispatchToTasks(action)
+        dispatch(action)
     }
 
-    const updateTodolistTitle = (todolistId: string, title: string) => {
-        dispathToTodolists(updateTodolistTitleAC(todolistId, title))
+    const updateTodolistTitle = (todolistId: string, newTitle: string) => {
+        dispatch(updateTodolistTitleAC({id: todolistId, title: newTitle}))
     }
 
     const changeModeHandler = () => {
@@ -162,7 +166,6 @@ function App2() {
                             <Grid2 key={todolist.id}>
                                 <Paper sx={{p: '0 20px 20px 20px'}}>
                                     <Todolist
-                                        key={todolist.id}
                                         todolistId={todolist.id}
                                         title={todolist.title}
                                         tasks={tasks}

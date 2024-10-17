@@ -17,8 +17,8 @@ beforeEach(() => {
     todolistId2 = uuidv4()
 
     startState = [
-        { id: todolistId1, title: 'What to learn', filter: 'all' },
-        { id: todolistId2, title: 'What to buy', filter: 'all' },
+        {id: todolistId1, title: 'What to learn', filter: 'all'},
+        {id: todolistId2, title: 'What to buy', filter: 'all'},
     ]
 })
 
@@ -60,28 +60,20 @@ test('correct todolist should be added', () => {
 
 test('correct todolist should change its name', () => {
 
-    const action = {
-        type: 'UPDATE-TODOLIST-TITLE',
-        payload: {
-            id: todolistId2,
-            title: 'New Todolist',
-        },
-    } as const
-    const endState = todolistsReducer(startState, updateTodolistTitleAC(todolistId2, 'New Todolist'))
+    const newTitle = 'New Todolist'
+
+    const endState = todolistsReducer(
+        startState,
+        updateTodolistTitleAC({id: todolistId2, title: newTitle})
+    )
 
     expect(endState[0].title).toBe('What to learn')
     expect(endState[1].title).toBe('New Todolist')
 })
 
 test('correct filter of todolist should be changed', () => {
-    const action = {
-        type: 'CHANGE-TODOLIST-FILTER',
-        payload: {
-            id: todolistId2,
-            filter: 'completed',
-        },
-    } as const
-    const endState = todolistsReducer(startState, changeTodolistFilterAC(todolistId2, 'completed'))
+
+    const endState = todolistsReducer(startState, changeTodolistFilterAC({id: todolistId2, filter: 'completed'}))
 
     expect(endState[0].filter).toBe('all')
     expect(endState[1].filter).toBe('completed')

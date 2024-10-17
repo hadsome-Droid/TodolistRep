@@ -1,5 +1,6 @@
 import {TaskProps} from "../../../App.tsx";
 import {v4 as uuidv4} from "uuid";
+import {TasksStateType} from "../../../AppWithReducers.tsx";
 
 
 export const removeTaskAC = (payload: { todolistId: string, taskId: string }) => {
@@ -38,17 +39,21 @@ export type RemoveTodolistActionType = {
 }
 
 type ActionsType =
-    | RemoveTaskActionType
+     RemoveTaskActionType
     | AddTaskActionType
     | ChangeTaskTitleActionType
     | ChangeTaskStatusActionType
     | AddTodolistActionType
     | RemoveTodolistActionType
 
-export const tasksReducer = (state: TaskProps[], action: ActionsType): TaskProps[] => {
+const initialState: TasksStateType = {}
+
+export const tasksReducer = (state: TasksStateType = initialState, action: ActionsType): TasksStateType => {
     switch (action.type) {
         case 'ADD-TASK': {
-            const newTask = {
+            // debugger
+            console.log(action)
+            const newTask: TaskProps = {
                 id: uuidv4(),
                 title: action.payload.title,
                 isDone: false,

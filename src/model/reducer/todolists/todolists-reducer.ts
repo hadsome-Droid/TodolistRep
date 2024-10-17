@@ -42,12 +42,14 @@ type ActionsType =
 const todolistId1 = uuidv4()
 const todolistId2 = uuidv4()
 
-const initialState: TodolistType[] = [
-    {id: todolistId1, title: 'What to learn', filter: 'all'},
-    {id: todolistId2, title: 'Song of live', filter: 'all'},
-]
+// const initialState: TodolistType[] = [
+//     {id: todolistId1, title: 'What to learn', filter: 'all'},
+//     {id: todolistId2, title: 'Song of live', filter: 'all'},
+// ]
 
-export const todolistsReducer = (state: TodolistType[] = initialState, action: ActionsType) => {
+const initialState: TodolistType[] = []
+
+export const todolistsReducer = (state: TodolistType[] = initialState, action: ActionsType): TodolistType[] => {
     switch (action.type) {
         case 'REMOVE-TODOLIST': {
             return state.filter((todo) => todo.id !== action.payload.id)
@@ -67,7 +69,8 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
             return state.map((todo) => todo.id === action.payload.id ? {...todo, filter: action.payload.filter} : todo)
         }
         default:
-            throw new Error("I don't understand this type")
+            return state
+        // throw new Error("I don't understand this type")
     }
 }
 
@@ -79,10 +82,10 @@ export const addTodolistAC = (title: string) => {
     return {type: 'ADD-TODOLIST', payload: {todolistId: uuidv4(), title}} as const
 }
 
-export const updateTodolistTitleAC = (todolistId: string, newTitle: string) => {
-    return {type: 'UPDATE-TODOLIST-TITLE', payload: {id: todolistId, title: newTitle}} as const
+export const updateTodolistTitleAC = (payload: { id: string, title: string }) => {
+    return {type: 'UPDATE-TODOLIST-TITLE', payload} as const
 }
 
-export const changeTodolistFilterAC = (todolistId: string, filter: FilterValuesType) => {
-    return {type: 'CHANGE-TODOLIST-FILTER', payload: {id: todolistId, filter}} as const
+export const changeTodolistFilterAC = (payload: { id: string, filter: FilterValuesType }) => {
+    return {type: 'CHANGE-TODOLIST-FILTER', payload} as const
 }

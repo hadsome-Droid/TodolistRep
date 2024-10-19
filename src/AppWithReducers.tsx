@@ -10,25 +10,25 @@ import Paper from '@mui/material/Paper'
 import Switch from '@mui/material/Switch'
 import CssBaseline from '@mui/material/CssBaseline'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
-import {FilterValuesType, Todolist} from "./components/todolist/Todolist.tsx";
+import {FilterValuesType, Todolist} from "./features/todolists/ui/Todolists/todolist/Todolist.tsx";
 import {useReducer, useState} from "react";
 import {v4 as uuidv4} from 'uuid';
-import {AddItemForm} from "./components/AdditemForm.tsx";
-import {useTodolistsStore} from "./model/zust/todolists-zustan.ts";
+import {AddItemForm} from "./common/components/addItemForm/AdditemForm.tsx";
+import {useTodolistsStore} from "./features/todolists/model/zust/todolists-zustan.ts";
 import {
     addTodolistAC, changeTodolistFilterAC,
     initialState, removeTodolistAC,
     todolistsReducer,
     updateTodolistTitleAC
-} from "./model/reducer/todolists/todolists-reducer.ts";
-import {MenuButton} from "./components/MenuButton.tsx";
+} from "./features/todolists/model/reducer/todolists/todolists-reducer.ts";
+import {MenuButton} from "./common/components/MenuButton.tsx";
 import {
     addTackAC,
     changeTaskStatusAC,
     changeTaskTitleAC,
     removeTaskAC,
     tasksReducer
-} from "./model/reducer/tasks/tasksReducer.ts";
+} from "./features/todolists/model/reducer/tasks/tasksReducer.ts";
 
 
 export type TaskProps = {

@@ -1,6 +1,14 @@
 import {v4 as uuidv4} from "uuid";
-import {TodolistType} from "../../../App.tsx";
-import {FilterValuesType} from "../../../components/todolist/Todolist.tsx";
+// import {TodolistType} from "../../../App.tsx";
+// import {FilterValuesType} from "../../../components/todolist/Todolist.tsx";
+
+export type FilterValuesType = 'all' | 'active' | 'completed'
+
+export type TodolistType = {
+    id: string,
+    title: string,
+    filter: FilterValuesType,
+}
 
 export type RemoveTodolistActionType = {
     type: 'REMOVE-TODOLIST'
@@ -39,8 +47,8 @@ type ActionsType =
     | ChangeTodolistTitleActionType
     | ChangeTodolistFilterActionType
 
-const todolistId1 = uuidv4()
-const todolistId2 = uuidv4()
+// const todolistId1 = uuidv4()
+// const todolistId2 = uuidv4()
 
 // const initialState: TodolistType[] = [
 //     {id: todolistId1, title: 'What to learn', filter: 'all'},
@@ -55,8 +63,7 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
             return state.filter((todo) => todo.id !== action.payload.id)
         }
         case 'ADD-TODOLIST': {
-            // const newTodolist = {id: uuidv4(), title: action.payload.title, filter: 'all'}
-            const newTodolist = {id: action.payload.todolistId, title: action.payload.title, filter: 'all'}
+            const newTodolist: TodolistType = {id: action.payload.todolistId, title: action.payload.title, filter: 'all'}
             return [
                 ...state,
                 newTodolist,

@@ -1,7 +1,14 @@
-import {TaskProps} from "../../../App.tsx";
 import {v4 as uuidv4} from "uuid";
-import {TasksStateType} from "../../../AppWithReducers.tsx";
 
+export type TaskProps = {
+    id: string,
+    title: string,
+    isDone: boolean,
+}
+
+export type TasksStateType = {
+    [key: string]: Array<TaskProps>
+}
 
 export const removeTaskAC = (payload: { todolistId: string, taskId: string }) => {
     return {type: 'REMOVE-TASK', payload} as const

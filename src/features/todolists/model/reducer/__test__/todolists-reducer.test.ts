@@ -1,12 +1,12 @@
 import {v4 as uuidv4} from "uuid";
-import {TodolistType} from "../../../App.tsx";
+import {TodolistType} from "../../../../../App.tsx";
 import {
     addTodolistAC,
     changeTodolistFilterAC,
     removeTodolistAC,
     todolistsReducer,
     updateTodolistTitleAC
-} from "./todolists-reducer.ts";
+} from "../todolists/todolists-reducer.ts";
 
 let todolistId1: string
 let todolistId2: string

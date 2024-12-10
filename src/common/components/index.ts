@@ -1,0 +1,1 @@
+export {EditableSpan} from './editableSpan/index.ts'

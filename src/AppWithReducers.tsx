@@ -49,7 +49,7 @@ export type TasksStateType = {
 
 type ThemeMode = 'dark' | 'light'
 
-function App2() {
+ function App2() {
     const test = useTodolistsStore()
     // console.log(test)
     const [themeMode, setThemeMode] = useState<ThemeMode>('dark')
@@ -185,4 +185,4 @@ function App2() {
     )
 }
 
-export default App
+

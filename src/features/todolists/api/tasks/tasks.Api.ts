@@ -1,4 +1,4 @@
-import { instance } from "common/instance"
+import { instance } from "../../../../common/instance/instance.ts"
 import { DomainTask, GetTasksResponse, UpdateTaskModel } from "./tasksApi.types.ts"
 import { BaseResponse } from "common/types"
 

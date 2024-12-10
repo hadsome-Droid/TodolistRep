@@ -3,6 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite --port 3000 --open",
     "build": "tsc -b && vite build",
@@ -22,6 +27,7 @@
     "react-dom": "^18.3.1",
     "react-redux": "^9.1.2",
     "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
     "uuid": "^10.0.0",
     "zustand": "^5.0.0"
   },

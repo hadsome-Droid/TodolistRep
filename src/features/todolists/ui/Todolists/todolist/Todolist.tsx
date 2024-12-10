@@ -3,7 +3,7 @@ import {TodolistType} from "../../../model/reducer/todolists/todolists-reducer.t
 import {FilterTasksButtons} from "./filterTasksButton/FilterTasksButtons.tsx";
 import {Tasks} from "./tasks/Tasks.tsx";
 import {TodolistTitle} from "./todolistTitle/TodolistTitle.tsx";
-import {addTackAC} from "../../../model/reducer/tasks/tasksReducer.ts";
+import { addTackAC, createTaskTC } from "../../../model/reducer/tasks/tasksReducer.ts"
 import {useAppDispatch} from "../../../../../common/hooks/useAppDispatch.ts";
 
 type Props = {
@@ -16,7 +16,7 @@ export const Todolist = (props: Props) => {
     const dispatch = useAppDispatch();
 
     const addTaskCallback = (title: string) => {
-        dispatch(addTackAC({todolistId: todolist.id, title}))
+        dispatch(createTaskTC({todolistId: todolist.id, title}))
     }
 
 

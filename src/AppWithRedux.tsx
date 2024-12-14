@@ -12,6 +12,7 @@ import { todolistsApi } from "./features/todolists/api/todolistsApi.ts"
 import { fetchTodolistsThunk, getTodolistsAC } from "./features/todolists/model/reducer/todolists/todolists-reducer.ts"
 import { useAppDispatch } from "./common/hooks/useAppDispatch.ts"
 import { ErrorSnackbar } from "./common/components/ErrorSnackbar/ErrorSnackbar.tsx"
+import { Routing } from "./common/routing"
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
     <ThemeProvider theme={getTheme(themeMode)}>
       <CssBaseline />
       <Header />
-      <Main />
+      <Routing />
       <ErrorSnackbar />
     </ThemeProvider>
   )

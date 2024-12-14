@@ -11,12 +11,18 @@ import {useAppDispatch} from "../../hooks/useAppDispatch.ts";
 import {useAppSelector} from "../../hooks/useAppSelector.ts";
 import LinearProgress from "@mui/material/LinearProgress"
 import { selectAppStatus } from "../../../app/appSelectors.ts"
+import { selectLoggedIn } from "../../../features/auth/model/authSelectors.ts"
+import { logoutTC } from "../../../features/auth/model/authReducer.ts"
 
 export const Header = () => {
     const themeMode = useAppSelector<RootState, ThemeMode>(state => state.app?.themeMode)
     const status = useAppSelector(selectAppStatus)
+    const isLoggedIn = useAppSelector(selectLoggedIn)
     const dispatch = useAppDispatch()
 
+    const handleLogut = () => {
+        dispatch(logoutTC())
+    }
 
     const changeModeHandler = () => {
         dispatch(changeThemeAC(themeMode == 'dark' ? 'light' : 'dark'))
@@ -30,7 +36,7 @@ export const Header = () => {
                     </IconButton>
                     <div>
                         <MenuButton>Login</MenuButton>
-                        <MenuButton>Logout</MenuButton>
+                        {isLoggedIn && <MenuButton onClick={handleLogut}>Logout</MenuButton>}
                         <MenuButton background={'aqua'}>Faq</MenuButton>
                         <Switch color={'default'} onChange={changeModeHandler}/>
                     </div>

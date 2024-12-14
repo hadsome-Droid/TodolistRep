@@ -9,9 +9,12 @@ import {RootState} from "../../../app/store.ts";
 import {changeThemeAC, ThemeMode} from "../../../app/app-reducer.ts";
 import {useAppDispatch} from "../../hooks/useAppDispatch.ts";
 import {useAppSelector} from "../../hooks/useAppSelector.ts";
+import LinearProgress from "@mui/material/LinearProgress"
+import { selectAppStatus } from "../../../app/appSelectors.ts"
 
 export const Header = () => {
     const themeMode = useAppSelector<RootState, ThemeMode>(state => state.app?.themeMode)
+    const status = useAppSelector(selectAppStatus)
     const dispatch = useAppDispatch()
 
 
@@ -32,6 +35,7 @@ export const Header = () => {
                         <Switch color={'default'} onChange={changeModeHandler}/>
                     </div>
                 </Toolbar>
+                {status === 'loading' && <LinearProgress />}
             </AppBar>
         </Grid2>
     );

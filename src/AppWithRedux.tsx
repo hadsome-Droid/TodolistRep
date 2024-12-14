@@ -8,10 +8,10 @@ import { Main } from "./app/main/Main.tsx"
 import { useAppSelector } from "./common/hooks/useAppSelector.ts"
 import { selectThemeMode } from "./app/appSelectors.ts"
 import { useEffect } from "react"
-
 import { todolistsApi } from "./features/todolists/api/todolistsApi.ts"
 import { fetchTodolistsThunk, getTodolistsAC } from "./features/todolists/model/reducer/todolists/todolists-reducer.ts"
 import { useAppDispatch } from "./common/hooks/useAppDispatch.ts"
+import { ErrorSnackbar } from "./common/components/ErrorSnackbar/ErrorSnackbar.tsx"
 
 
 function App() {
@@ -19,20 +19,8 @@ function App() {
   const dispatch = useAppDispatch()
 
   const themeMode = useAppSelector(selectThemeMode)
-  const updateTitleTodolistHandler = () => {
-    const todolistId = "1a54ca5f-f453-4604-996a-1f423808acf6"
-    const title = "New old repeat todolist title"
-    todolistsApi.updateTodolist({ id: todolistId, title }).then(res => {
-      console.log(res)
-    })
-  }
 
   useEffect(() => {
-    // todolistsApi.getTodolists()
-    //      .then(res => {
-    //        dispatch(getTodolistsAC(res.data))
-    //          console.log(res.data)
-    //      })
     dispatch(fetchTodolistsThunk)
   }, [])
 
@@ -40,8 +28,8 @@ function App() {
     <ThemeProvider theme={getTheme(themeMode)}>
       <CssBaseline />
       <Header />
-      <button onClick={updateTitleTodolistHandler}>Update Title Todolist</button>
       <Main />
+      <ErrorSnackbar />
     </ThemeProvider>
   )
 }

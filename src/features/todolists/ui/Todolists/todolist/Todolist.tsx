@@ -19,11 +19,10 @@ export const Todolist = (props: Props) => {
         dispatch(createTaskTC({todolistId: todolist.id, title}))
     }
 
-
     return (
         <div>
             <TodolistTitle todolist={todolist}/>
-            <AddItemForm addItem={addTaskCallback}/>
+            <AddItemForm addItem={addTaskCallback} disabled={todolist.entityStatus === 'loading'}/>
             <Tasks todolist={todolist}/>
             <FilterTasksButtons todolist={todolist}/>
             <span>{date}</span>

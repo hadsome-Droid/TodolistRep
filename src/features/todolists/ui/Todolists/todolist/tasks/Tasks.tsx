@@ -24,7 +24,6 @@ export const Tasks = ({ todolist}: Props) => {
 
     let tasksForTodolist = tasks[todolist.id]
 
-    console.log(tasks)
 
     if (todolist.filter === 'active') {
         tasksForTodolist = tasks[todolist.id].filter(task => task.status === TaskStatus.New)

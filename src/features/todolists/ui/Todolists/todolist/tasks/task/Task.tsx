@@ -4,8 +4,6 @@ import { EditableSpan } from "../../../../../../../common/components/editableSpa
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import ListItem from "@mui/material/ListItem"
 import {
-  changeTaskStatusAC,
-  changeTaskTitleAC,
   removeTaskAC,
   removeTaskTC, updateTaskTC
 } from "../../../../../model/reducer/tasks/tasksReducer.ts"
@@ -37,6 +35,8 @@ export const Task = ({ task, todolist }: Props) => {
     dispatch(removeTaskTC({ todolistId: todolist.id, taskId: task.id }))
   }
 
+  const disabled = todolist.entityStatus === 'loading'
+
   return (
     <ListItem
       key={task.id}
@@ -47,10 +47,11 @@ export const Task = ({ task, todolist }: Props) => {
         <Checkbox
           checked={task.status === TaskStatus.Completed}
           onChange={changeTaskStatusHandler}
+          disabled={disabled}
         />
-        <EditableSpan value={task.title} onChange={changeTaskTitle} />
+        <EditableSpan value={task.title} onChange={changeTaskTitle} disabled={disabled}/>
       </div>
-      <IconButton onClick={removeTask}>
+      <IconButton onClick={removeTask} disabled={disabled}>
         <DeleteForeverIcon />
       </IconButton>
     </ListItem>

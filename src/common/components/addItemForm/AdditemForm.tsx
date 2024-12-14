@@ -8,9 +8,10 @@ import IconButton from "@mui/material/IconButton";
 
 type Props = {
     addItem: (title: string) => void
+    disabled?: boolean
 }
 
-export const AddItemForm = ({addItem}: Props) => {
+export const AddItemForm = ({addItem, disabled}: Props) => {
     const [title, setTitle] = useState("")
     const [error, setError] = useState<string | null>(null)
 
@@ -46,19 +47,11 @@ export const AddItemForm = ({addItem}: Props) => {
                 size={"small"}
                 error={!!error}
                 helperText={error}
+                disabled={disabled}
             />
-            {/*<input*/}
-            {/*    className={error ? 'error' : ''}*/}
-            {/*    value={title}*/}
-            {/*    onChange={changeItemHandler}*/}
-            {/*    onKeyUp={addItemOnKeyUpHandler}*/}
-            {/*/>*/}
-            {/*<Button onClick={handlerAddItem} title={'+'}/>*/}
-            {/*<Button onClick={handlerAddItem} variant={'contained'} size={'large'}>{'+'}</Button>*/}
-            <IconButton color={'primary'} onClick={handlerAddItem}>
+            <IconButton color={'primary'} onClick={handlerAddItem} disabled={disabled}>
                 <AddCircleIcon />
             </IconButton>
-            {/*{error && <div className={'error-message'}>{error}</div>}*/}
         </div>
     );
 };

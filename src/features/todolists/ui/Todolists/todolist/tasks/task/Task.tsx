@@ -4,7 +4,6 @@ import { EditableSpan } from "../../../../../../../common/components/editableSpa
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import ListItem from "@mui/material/ListItem"
 import {
-  removeTaskAC,
   removeTaskTC, updateTaskTC
 } from "../../../../../model/reducer/tasks/tasksReducer.ts"
 import { getListItemSx } from "./Task.styles.ts"

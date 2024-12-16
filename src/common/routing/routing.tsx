@@ -1,3 +1,4 @@
+import React, { ReactNode } from "react"
 import { createBrowserRouter, Navigate, Outlet, Route, RouteObject, Routes } from "react-router"
 import { Main } from "../../app/main/Main.tsx"
 import { Login } from "../../features/auth/ui/Login/Login.tsx"
@@ -6,6 +7,10 @@ import { useAppSelector } from "./../../common/hooks/useAppSelector.ts"
 import { selectLoggedIn } from "../../features/auth/model/authSelectors.ts"
 import App from "../../AppWithRedux.tsx"
 
+type Props = {
+  children: ReactNode
+}
+
 export const Path = {
   Main: "/",
   Login: "/login",
@@ -13,18 +18,18 @@ export const Path = {
 } as const
 
 const routes = [
-  // { path: Path.Main, element: <Main />, isPrivate: true },
-  // { path: Path.Login, element: <Login />, isPrivate: false },
+  { path: Path.Main, element: <Main />, isPrivate: true },
+  { path: Path.Login, element: <Login />, isPrivate: false },
   // { path: "/dashboard", element: <Dashboard />, isPrivate: true },
   // { path: "/profile", element: <Profile />, isPrivate: true },
   // { path: "/settings", element: <Settings />, isPrivate: true },
-  // { path: Path.NotFound, element: <Page404 />, isPrivate: false }
+  { path: Path.NotFound, element: <Page404 />, isPrivate: false }
 ]
 
-export const PrivateRoutes = ({ children }) => {
+export const PrivateRoutes = ({ children }: Props) => {
   const isLoggedIn = useAppSelector(selectLoggedIn)
 
-  return isLoggedIn ? children : <Navigate to={Path.Login} />
+  return isLoggedIn ? children : <Navigate to={Path.Login} replace />
 }
 
 export const Routing = () => {

@@ -1,4 +1,4 @@
-import "./App.module.css"
+import s from "./App.module.css"
 import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
 // import {useTodolistsStore} from "./model/zust/todolists-zustan.ts";
@@ -12,8 +12,7 @@ import { useAppDispatch } from "./common/hooks/useAppDispatch.ts"
 import { useEffect } from "react"
 import { initializeAppTC } from "./features/auth/model/authReducer.ts"
 import { selectIsInitialized } from "./features/auth/model/authSelectors.ts"
-import CircularProgress from '@mui/material/CircularProgress';
-import { Outlet } from "react-router"
+import CircularProgress from "@mui/material/CircularProgress"
 
 
 function App() {
@@ -26,26 +25,19 @@ function App() {
     dispatch(initializeAppTC())
   }, [])
 
-  if(!isInitialized) {
+  if (!isInitialized) {
     return (
-      <div className='circularProgressContainer'>
+      <div className={s.circularProgressContainer}>
         <CircularProgress size={150} thickness={3} />
       </div>
     )
-
   }
 
   return (
     <ThemeProvider theme={getTheme(themeMode)}>
       <CssBaseline />
-      {
-        isInitialized && (
-          <>
-            <Header/>
-            <Outlet/>
-          </>
-        )
-      }
+      <Header />
+      <Routing />
       <ErrorSnackbar />
     </ThemeProvider>
   )

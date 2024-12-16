@@ -2,8 +2,8 @@
 import {
     Todolist,
 } from "./todolistsApi.types.ts";
-import {instance} from "../../../common/instance/instance";
-import {BaseResponse} from "common/types";
+import {instance} from "../../../common/instance/instance.ts";
+import {BaseResponse} from "./../../../common/types";
 
 
 export const todolistsApi = {

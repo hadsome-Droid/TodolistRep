@@ -19,3 +19,9 @@
   display: flex;
   align-items: center;
 }
+.circularProgressContainer {
+  position: fixed;
+  top: 30%;
+  text-align: center;
+  width: 100%;
+}

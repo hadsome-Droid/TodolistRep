@@ -45,6 +45,7 @@ type ActionsType =
   | ChangeTodolistFilterActionType
   | ReturnType<typeof getTodolistsAC>
   | ReturnType<typeof changeTodolistEntityStatusAC>
+  | ReturnType<typeof clearTodolistsAC>
 
 // const todolistId1 = uuidv4()
 // const todolistId2 = uuidv4()
@@ -91,6 +92,9 @@ export const todolistsReducer = (state: DomainTodolist[] = initialState, action:
         entityStatus: action.payload.entityStatus
       } : todo)
     }
+    case "CLEAR-TODOLISTS":{
+      return []
+    }
     default:
       return state
     // throw new Error("I don't understand this type")
@@ -121,11 +125,18 @@ export const changeTodolistEntityStatusAC = (payload: { id: string, entityStatus
   return { type: "CHANGE-TODOLIST-ENTITY-STATUS", payload } as const
 }
 
+export const clearTodolistsAC = () => {
+  return { type: "CLEAR-TODOLISTS" } as const
+}
+
+
 export const fetchTodolistsThunk = (dispatch: Dispatch) => {
   dispatch(setAppStatusAC("loading"))
   todolistsApi.getTodolists().then(res => {
     dispatch(setAppStatusAC("success"))
     dispatch(getTodolistsAC(res.data))
+  }).catch(error => {
+    handleServerNetworkError(error, dispatch)
   })
 }
 

@@ -1,7 +1,6 @@
 import Grid2 from "@mui/material/Grid2"
 import { AddItemForm } from "../../common/components/addItemForm/AdditemForm.tsx"
 import {
-  addTodolistAC,
   createTodolistThunk
 } from "../../features/todolists/model/reducer/todolists/todolists-reducer.ts"
 import Container from "@mui/material/Container"

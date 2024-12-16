@@ -1,4 +1,4 @@
-import './App.css'
+import './App.module.css'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Button from '@mui/material/Button'

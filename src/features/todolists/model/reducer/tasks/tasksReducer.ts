@@ -35,6 +35,10 @@ export const updateTaskAC = (payload: { todolistId: string, taskId: string, doma
   return { type: "UPDATE-TACK", payload } as const
 }
 
+export const clearTasksAC = () => {
+  return { type: "CLEAR-TASKS" } as const
+}
+
 // Actions types
 export type RemoveTaskActionType = ReturnType<typeof removeTaskAC>
 export type AddTaskActionType = ReturnType<typeof addTackAC>
@@ -46,6 +50,7 @@ type ActionsType =
   | RemoveTodolistActionType
   | ReturnType<typeof getTasksAC>
   | ReturnType<typeof updateTaskAC>
+  | ReturnType<typeof clearTasksAC>
 
 const initialState: TasksStateType = {}
 
@@ -90,6 +95,8 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
     case "REMOVE-TODOLIST":
       delete state[action.payload.id]
       return { ...state }
+    case "CLEAR-TASKS":
+      return {}
     default:
       return state
   }
@@ -164,7 +171,7 @@ export const updateTaskTC = (args: { todolistId: string, taskId: string, domainM
           dispatch(setAppStatusAC("success"))
           dispatch(updateTaskAC(args))
         } else {
-         handleServerAppError(res.data, dispatch)
+          handleServerAppError(res.data, dispatch)
         }
       })
         .catch(error => {

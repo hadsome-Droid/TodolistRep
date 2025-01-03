@@ -4,7 +4,7 @@ import Snackbar from "@mui/material/Snackbar"
 import { useAppSelector } from "../../../common/hooks/useAppSelector.ts"
 import { selectAppError } from "../../../app/appSelectors.ts"
 import { useAppDispatch } from "../../../common/hooks/useAppDispatch.ts"
-import { setAppErrorAC } from "../../../app/app-reducer.ts"
+import { setAppErrorAC } from "../../../app/appSlice.ts"
 
 export const ErrorSnackbar = () => {
   const error = useAppSelector(selectAppError)

@@ -18,9 +18,9 @@ import {useTodolistsStore} from "./features/todolists/model/zust/todolists-zusta
 import {
     addTodolistAC, changeTodolistFilterAC,
     initialState, removeTodolistAC,
-    todolistsReducer,
+    todolistsSlice,
     updateTodolistTitleAC
-} from "./features/todolists/model/reducer/todolists/todolists-reducer.ts";
+} from "./features/todolists/model/reducer/todolists/todolistsSlice.ts";
 import {MenuButton} from "./common/components/MenuButton.tsx";
 import {
     addTackAC,
@@ -85,7 +85,7 @@ type ThemeMode = 'dark' | 'light'
         ]
     }
 
-    const [todolists, dispathToTodolists] = useReducer(todolistsReducer, [
+    const [todolists, dispathToTodolists] = useReducer(todolistsSlice, [
         {id: todolistId1, title: 'What to learn', filter: 'all'},
         {id: todolistId2, title: 'Song of live', filter: 'all'},
     ])

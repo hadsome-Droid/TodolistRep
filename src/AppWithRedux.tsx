@@ -10,7 +10,7 @@ import { ErrorSnackbar } from "./common/components/ErrorSnackbar/ErrorSnackbar.t
 import { Routing } from "./common/routing"
 import { useAppDispatch } from "./common/hooks/useAppDispatch.ts"
 import { useEffect } from "react"
-import { initializeAppTC } from "./features/auth/model/authReducer.ts"
+import { initializeAppTC } from "./features/auth/model/authSlice.ts"
 import { selectIsInitialized } from "./features/auth/model/authSelectors.ts"
 import CircularProgress from "@mui/material/CircularProgress"
 

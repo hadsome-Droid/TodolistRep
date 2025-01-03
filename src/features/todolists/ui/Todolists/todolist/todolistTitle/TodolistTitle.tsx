@@ -5,7 +5,7 @@ import {
   deleteTodolistTC,
   removeTodolistAC, updateTodolistTC,
   updateTodolistTitleAC
-} from "../../../../model/reducer/todolists/todolists-reducer.ts"
+} from "../../../../model/reducer/todolists/todolistsSlice.ts"
 import {useAppDispatch} from "../../../../../../common/hooks/useAppDispatch.ts";
 import { DomainTodolist } from "../../../../api/todolistsApi.types.ts"
 import { ResultCode } from "common/enums/enums.ts"

@@ -1,8 +1,10 @@
 import React from "react"
 import { Dispatch } from "redux"
-import { setAppErrorAC, setAppStatusAC } from "../../app/app-reducer.ts"
+import { setAppError, setAppErrorAC, setAppStatus, setAppStatusAC } from "../../app/appSlice.ts"
 
 export const handleServerNetworkError = (error: {message: string}, dispatch: Dispatch) => {
-  dispatch(setAppErrorAC(error.message))
-  dispatch(setAppStatusAC('failed'))
+  dispatch(setAppError({error: error.message }))
+  // dispatch(setAppErrorAC(error.message))
+  // dispatch(setAppStatusAC('failed'))
+  dispatch(setAppStatus({status: "failed" }))
 }

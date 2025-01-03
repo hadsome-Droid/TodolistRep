@@ -18,9 +18,9 @@ import {useTodolistsStore} from "./features/todolists/model/zust/todolists-zusta
 import {
     addTodolistAC, changeTodolistFilterAC,
     initialState, removeTodolistAC,
-    todolistsReducer,
+    todolistsSlice,
     updateTodolistTitleAC
-} from "./features/todolists/model/reducer/todolists/todolists-reducer.ts";
+} from "./features/todolists/model/reducer/todolists/todolistsSlice.ts";
 import {MenuButton} from "./common/components/MenuButton.tsx";
 
 
@@ -58,7 +58,7 @@ function App1() {
     const todolistId1 = uuidv4()
     const todolistId2 = uuidv4()
 
-    const [todolist2, dispatch] = useReducer(todolistsReducer, initialState)
+    const [todolist2, dispatch] = useReducer(todolistsSlice, initialState)
 
     const tasksList = {
         [todolistId1]: [

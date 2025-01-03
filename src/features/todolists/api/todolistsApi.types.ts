@@ -1,5 +1,5 @@
-import { FilterValuesType } from "../model/reducer/todolists/todolists-reducer.ts"
-import { RequestStatus } from "../../../app/app-reducer.ts"
+import { FilterValuesType } from "../model/reducer/todolists/todolistsSlice.ts"
+import { RequestStatus } from "../../../app/appSlice.ts"
 
 export type Todolist = {
     id: string

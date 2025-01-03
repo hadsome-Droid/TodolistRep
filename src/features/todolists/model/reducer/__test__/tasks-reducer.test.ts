@@ -1,6 +1,6 @@
 import {TasksStateType} from "../../../../../App.tsx";
 import {addTackAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "../tasks/tasksReducer.ts";
-import {removeTodolistAC} from "../todolists/todolists-reducer.ts";
+import {removeTodolistAC} from "../todolists/todolistsSlice.ts";
 
 let startState: TasksStateType
 

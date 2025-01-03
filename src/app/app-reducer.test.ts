@@ -1,4 +1,4 @@
-import {appReducer, changeThemeAC, ThemeMode} from "./app-reducer.ts";
+import {appSlice, changeThemeAC, ThemeMode} from "./appSlice.ts";
 
 
 
@@ -7,7 +7,7 @@ test('switch theme should be light', () => {
         themeMode: 'dark' as ThemeMode,
     }
 
-    const endState = appReducer(startState, changeThemeAC('light'))
+    const endState = appSlice(startState, changeThemeAC('light'))
 
     expect(endState.themeMode).toEqual('light')
 })

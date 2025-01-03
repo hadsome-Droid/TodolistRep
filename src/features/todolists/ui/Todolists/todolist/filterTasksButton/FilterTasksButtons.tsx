@@ -4,7 +4,7 @@ import {
     changeTodolistFilterAC,
     FilterValuesType,
     TodolistType
-} from "../../../../model/reducer/todolists/todolists-reducer.ts";
+} from "../../../../model/reducer/todolists/todolistsSlice.ts";
 import {filterButtonsContainerSx} from "./FilterTasksButton.styles.ts";
 import {useAppDispatch} from "../../../../../../common/hooks/useAppDispatch.ts";
 

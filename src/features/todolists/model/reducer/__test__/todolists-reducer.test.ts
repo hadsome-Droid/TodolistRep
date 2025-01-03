@@ -4,9 +4,9 @@ import {
     addTodolistAC,
     changeTodolistFilterAC,
     removeTodolistAC,
-    todolistsReducer,
+    todolistsSlice,
     updateTodolistTitleAC
-} from "../todolists/todolists-reducer.ts";
+} from "../todolists/todolistsSlice.ts";
 
 let todolistId1: string
 let todolistId2: string
@@ -35,7 +35,7 @@ test('correct todolist should be removed', () => {
             id: todolistId1
         },
     } as const
-    const endState = todolistsReducer(startState, removeTodolistAC(todolistId1))
+    const endState = todolistsSlice(startState, removeTodolistAC(todolistId1))
 
     // 3. Проверяем, что наши действия (изменения state) соответствуют ожиданию
     // в массиве останется один тудулист
@@ -52,7 +52,7 @@ test('correct todolist should be added', () => {
     //         title: 'New Todolist',
     //     },
     // } as const
-    const endState = todolistsReducer(startState, addTodolistAC('New Todolist'))
+    const endState = todolistsSlice(startState, addTodolistAC('New Todolist'))
 
     expect(endState.length).toBe(3)
     expect(endState[2].title).toBe('New Todolist')
@@ -62,7 +62,7 @@ test('correct todolist should change its name', () => {
 
     const newTitle = 'New Todolist'
 
-    const endState = todolistsReducer(
+    const endState = todolistsSlice(
         startState,
         updateTodolistTitleAC({id: todolistId2, title: newTitle})
     )
@@ -73,7 +73,7 @@ test('correct todolist should change its name', () => {
 
 test('correct filter of todolist should be changed', () => {
 
-    const endState = todolistsReducer(startState, changeTodolistFilterAC({id: todolistId2, filter: 'completed'}))
+    const endState = todolistsSlice(startState, changeTodolistFilterAC({id: todolistId2, filter: 'completed'}))
 
     expect(endState[0].filter).toBe('all')
     expect(endState[1].filter).toBe('completed')

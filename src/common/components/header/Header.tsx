@@ -6,13 +6,13 @@ import { MenuButton } from "../MenuButton.tsx"
 import Switch from "@mui/material/Switch"
 import Grid2 from "@mui/material/Grid2"
 import { RootState } from "../../../app/store.ts"
-import { changeThemeAC, ThemeMode } from "../../../app/app-reducer.ts"
+import { changeTheme, changeThemeAC, ThemeMode } from "../../../app/appSlice.ts"
 import { useAppDispatch } from "../../hooks/useAppDispatch.ts"
 import { useAppSelector } from "../../hooks/useAppSelector.ts"
 import LinearProgress from "@mui/material/LinearProgress"
 import { selectAppStatus } from "../../../app/appSelectors.ts"
 import { selectLoggedIn } from "../../../features/auth/model/authSelectors.ts"
-import { logoutTC } from "../../../features/auth/model/authReducer.ts"
+import { logoutTC } from "../../../features/auth/model/authSlice.ts"
 
 export const Header = () => {
   const themeMode = useAppSelector<RootState, ThemeMode>(state => state.app?.themeMode)
@@ -25,7 +25,8 @@ export const Header = () => {
   }
 
   const changeModeHandler = () => {
-    dispatch(changeThemeAC(themeMode == "dark" ? "light" : "dark"))
+    // dispatch(changeThemeAC(themeMode == "dark" ? "light" : "dark"))
+    dispatch(changeTheme({ themeMode: themeMode == "dark" ? "light" : "dark" }))
   }
   return (
     <Grid2 container>

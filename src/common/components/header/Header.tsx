@@ -6,18 +6,17 @@ import { MenuButton } from "../MenuButton.tsx"
 import Switch from "@mui/material/Switch"
 import Grid2 from "@mui/material/Grid2"
 import { RootState } from "../../../app/store.ts"
-import { changeTheme, changeThemeAC, ThemeMode } from "../../../app/appSlice.ts"
+import { changeTheme, ThemeMode } from "../../../app/appSlice.ts"
 import { useAppDispatch } from "../../hooks/useAppDispatch.ts"
 import { useAppSelector } from "../../hooks/useAppSelector.ts"
 import LinearProgress from "@mui/material/LinearProgress"
 import { selectAppStatus } from "../../../app/appSelectors.ts"
-import { selectLoggedIn } from "../../../features/auth/model/authSelectors.ts"
-import { logoutTC } from "../../../features/auth/model/authSlice.ts"
+import { logoutTC, selectIsLoggedIn } from "../../../features/auth/model/authSlice.ts"
 
 export const Header = () => {
   const themeMode = useAppSelector<RootState, ThemeMode>(state => state.app?.themeMode)
   const status = useAppSelector(selectAppStatus)
-  const isLoggedIn = useAppSelector(selectLoggedIn)
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const dispatch = useAppDispatch()
 
   const handleLogut = () => {

@@ -28,7 +28,7 @@ import {
     changeTaskTitleAC,
     removeTaskAC,
     tasksReducer
-} from "./features/todolists/model/reducer/tasks/tasksReducer.ts";
+} from "./features/todolists/model/reducer/tasks/tasksSlice.ts";
 
 
 export type TaskProps = {

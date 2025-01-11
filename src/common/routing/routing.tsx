@@ -4,8 +4,8 @@ import { Main } from "../../app/main/Main.tsx"
 import { Login } from "../../features/auth/ui/Login/Login.tsx"
 import { Page404 } from "../../common/components/page404"
 import { useAppSelector } from "./../../common/hooks/useAppSelector.ts"
-import { selectLoggedIn } from "../../features/auth/model/authSelectors.ts"
 import App from "../../AppWithRedux.tsx"
+import { selectIsLoggedIn } from "../../features/auth/model/authSlice.ts"
 
 type Props = {
   children: ReactNode
@@ -27,7 +27,7 @@ const routes = [
 ]
 
 export const PrivateRoutes = ({ children }: Props) => {
-  const isLoggedIn = useAppSelector(selectLoggedIn)
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
 
   return isLoggedIn ? children : <Navigate to={Path.Login} replace />
 }

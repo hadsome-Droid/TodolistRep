@@ -3,13 +3,10 @@ import {IconButton} from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import {
   deleteTodolistTC,
-  removeTodolistAC, updateTodolistTC,
-  updateTodolistTitleAC
+  updateTodolistTC,
 } from "../../../../model/reducer/todolists/todolistsSlice.ts"
 import {useAppDispatch} from "../../../../../../common/hooks/useAppDispatch.ts";
 import { DomainTodolist } from "../../../../api/todolistsApi.types.ts"
-import { ResultCode } from "common/enums/enums.ts"
-
 
 type Props = {
     todolist: DomainTodolist

@@ -1,7 +1,6 @@
 import s from "./App.module.css"
 import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
-// import {useTodolistsStore} from "./model/zust/todolists-zustan.ts";
 import { getTheme } from "./common/theme/theme.ts"
 import { Header } from "./common/components/header/Header.tsx"
 import { useAppSelector } from "./common/hooks/useAppSelector.ts"
@@ -10,8 +9,7 @@ import { ErrorSnackbar } from "./common/components/ErrorSnackbar/ErrorSnackbar.t
 import { Routing } from "./common/routing"
 import { useAppDispatch } from "./common/hooks/useAppDispatch.ts"
 import { useEffect } from "react"
-import { initializeAppTC } from "./features/auth/model/authSlice.ts"
-import { selectIsInitialized } from "./features/auth/model/authSelectors.ts"
+import { initializeAppTC, selectIsInitialized } from "./features/auth/model/authSlice.ts"
 import CircularProgress from "@mui/material/CircularProgress"
 
 

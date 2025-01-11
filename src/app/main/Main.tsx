@@ -7,13 +7,13 @@ import Container from "@mui/material/Container"
 import { Todolists } from "../../features/todolists/ui/Todolists/Todolists.tsx"
 import { useAppDispatch } from "../../common/hooks/useAppDispatch.ts"
 import { useAppSelector } from "./../../common/hooks/useAppSelector.ts"
-import { selectLoggedIn } from "../../features/auth/model/authSelectors.ts"
 import { useNavigate } from "react-router"
 import { useEffect } from "react"
 import { Path } from "./../../common/routing/routing.tsx"
+import { selectIsLoggedIn } from "../../features/auth/model/authSlice.ts"
 
 export const Main = () => {
-  const isLoggedIn = useAppSelector(selectLoggedIn)
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 

@@ -14,8 +14,7 @@ import Grid2 from "@mui/material/Grid2"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import s from "./Login.module.css"
 import { useAppDispatch } from "./../../../../common/hooks/useAppDispatch.ts"
-import { loginTC } from "../../model/authSlice.ts"
-import { selectLoggedIn } from "../../model/authSelectors.ts"
+import { loginTC, selectIsLoggedIn } from "../../model/authSlice.ts"
 import { useNavigate } from "react-router"
 import { useEffect } from "react"
 import { Path } from "./../../../../common/routing/routing.tsx"
@@ -28,10 +27,10 @@ type Inputs = {
 
 export const Login = () => {
   const themeMode = useAppSelector(selectThemeMode)
-  const isLoggedIn = useAppSelector(selectLoggedIn)
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const theme = getTheme(themeMode)
   const dispatch = useAppDispatch()
-
+  console.log(isLoggedIn)
   const navigate = useNavigate()
 
   const {

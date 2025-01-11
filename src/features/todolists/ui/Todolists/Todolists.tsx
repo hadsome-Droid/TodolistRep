@@ -10,7 +10,7 @@ import { fetchTodolistsThunk } from "../../model/reducer/todolists/todolistsSlic
 export const Todolists = () => {
   const todolists = useAppSelector(selectTodolists)
   const dispatch = useAppDispatch()
-
+  console.log(todolists)
   useEffect(() => {
         dispatch(fetchTodolistsThunk)
   }, [])

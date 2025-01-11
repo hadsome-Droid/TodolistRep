@@ -5,7 +5,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import ListItem from "@mui/material/ListItem"
 import {
   removeTaskTC, updateTaskTC
-} from "../../../../../model/reducer/tasks/tasksReducer.ts"
+} from "../../../../../model/reducer/tasks/tasksSlice.ts"
 import { getListItemSx } from "./Task.styles.ts"
 import { useAppDispatch } from "../../../../../../../common/hooks/useAppDispatch.ts"
 import { DomainTask } from "../../../../../api/tasks/tasksApi.types.ts"

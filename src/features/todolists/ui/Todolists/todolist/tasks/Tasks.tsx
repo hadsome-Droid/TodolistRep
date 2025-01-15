@@ -7,7 +7,7 @@ import { DomainTodolist } from "../../../../api/todolistsApi.types.ts"
 import { TaskStatus } from "../../../../../../common/enums/enums.ts"
 import { useAppDispatch } from "../../../../../../common/hooks/useAppDispatch.ts"
 import { useEffect } from "react"
-import { fetchTasksTC } from "../../../../model/reducer/tasks/tasksSlice.ts"
+import { fetchTasks, fetchTasksTC } from "../../../../model/reducer/tasks/tasksSlice.ts"
 
 type Props = {
     todolist: DomainTodolist
@@ -18,7 +18,8 @@ export const Tasks = ({ todolist}: Props) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchTasksTC(todolist.id))
+        // dispatch(fetchTasksTC(todolist.id))
+        dispatch(fetchTasks(todolist.id))
     }, [])
 
     let tasksForTodolist = tasks[todolist.id]

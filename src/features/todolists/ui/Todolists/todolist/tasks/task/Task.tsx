@@ -4,7 +4,8 @@ import { EditableSpan } from "../../../../../../../common/components/editableSpa
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import ListItem from "@mui/material/ListItem"
 import {
-  removeTaskTC, updateTaskTC
+  removeTask,
+  removeTaskTC, updateTask, updateTaskTC
 } from "../../../../../model/reducer/tasks/tasksSlice.ts"
 import { getListItemSx } from "./Task.styles.ts"
 import { useAppDispatch } from "../../../../../../../common/hooks/useAppDispatch.ts"
@@ -22,16 +23,19 @@ export const Task = ({ task, todolist }: Props) => {
   const dispatch = useAppDispatch()
 
   const changeTaskTitle = (title: string) => {
-    dispatch(updateTaskTC({ todolistId: todolist.id, taskId: task.id, domainModel: { title } }))
+    // dispatch(updateTaskTC({ todolistId: todolist.id, taskId: task.id, domainModel: { title } }))
+    dispatch(updateTask({ todolistId: todolist.id, taskId: task.id, domainModel: { title } }))
   }
 
   const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const status = e.currentTarget.checked ? TaskStatus.Completed : TaskStatus.New
-    dispatch(updateTaskTC({ taskId: task.id, domainModel: { status }, todolistId: todolist.id }))
+    // dispatch(updateTaskTC({ taskId: task.id, domainModel: { status }, todolistId: todolist.id }))
+    dispatch(updateTask({ taskId: task.id, domainModel: { status }, todolistId: todolist.id }))
   }
 
-  const removeTask = () => {
-    dispatch(removeTaskTC({ todolistId: todolist.id, taskId: task.id }))
+  const handleRemoveTask = () => {
+    // dispatch(removeTaskTC({ todolistId: todolist.id, taskId: task.id }))
+    dispatch(removeTask({ todolistId: todolist.id, taskId: task.id }))
   }
 
   const disabled = todolist.entityStatus === 'loading'
@@ -50,7 +54,7 @@ export const Task = ({ task, todolist }: Props) => {
         />
         <EditableSpan value={task.title} onChange={changeTaskTitle} disabled={disabled}/>
       </div>
-      <IconButton onClick={removeTask} disabled={disabled}>
+      <IconButton onClick={handleRemoveTask} disabled={disabled}>
         <DeleteForeverIcon />
       </IconButton>
     </ListItem>

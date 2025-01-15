@@ -9,7 +9,7 @@ import { ErrorSnackbar } from "./common/components/ErrorSnackbar/ErrorSnackbar.t
 import { Routing } from "./common/routing"
 import { useAppDispatch } from "./common/hooks/useAppDispatch.ts"
 import { useEffect } from "react"
-import { initializeAppTC, selectIsInitialized } from "./features/auth/model/authSlice.ts"
+import { initializeApp, initializeAppTC, selectIsInitialized } from "./features/auth/model/authSlice.ts"
 import CircularProgress from "@mui/material/CircularProgress"
 
 
@@ -20,7 +20,8 @@ function App() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(initializeAppTC())
+    // dispatch(initializeAppTC())
+    dispatch(initializeApp())
   }, [])
 
   if (!isInitialized) {

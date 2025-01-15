@@ -11,7 +11,7 @@ import { useAppDispatch } from "../../hooks/useAppDispatch.ts"
 import { useAppSelector } from "../../hooks/useAppSelector.ts"
 import LinearProgress from "@mui/material/LinearProgress"
 import { selectAppStatus } from "../../../app/appSelectors.ts"
-import { logoutTC, selectIsLoggedIn } from "../../../features/auth/model/authSlice.ts"
+import { logOut, logoutTC, selectIsLoggedIn } from "../../../features/auth/model/authSlice.ts"
 
 export const Header = () => {
   const themeMode = useAppSelector<RootState, ThemeMode>(state => state.app?.themeMode)
@@ -20,7 +20,8 @@ export const Header = () => {
   const dispatch = useAppDispatch()
 
   const handleLogut = () => {
-    dispatch(logoutTC())
+    // dispatch(logoutTC())
+    dispatch(logOut())
   }
 
   const changeModeHandler = () => {

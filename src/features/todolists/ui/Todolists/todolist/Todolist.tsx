@@ -2,7 +2,7 @@ import {AddItemForm} from "../../../../../common/components/addItemForm/AdditemF
 import {FilterTasksButtons} from "./filterTasksButton/FilterTasksButtons.tsx";
 import {Tasks} from "./tasks/Tasks.tsx";
 import {TodolistTitle} from "./todolistTitle/TodolistTitle.tsx";
-import { createTaskTC } from "../../../model/reducer/tasks/tasksSlice.ts"
+import { addTask, createTaskTC } from "../../../model/reducer/tasks/tasksSlice.ts"
 import {useAppDispatch} from "../../../../../common/hooks/useAppDispatch.ts";
 import { DomainTodolist } from "../../../api/todolistsApi.types.ts"
 
@@ -16,7 +16,8 @@ export const Todolist = (props: Props) => {
     const dispatch = useAppDispatch();
 
     const addTaskCallback = (title: string) => {
-        dispatch(createTaskTC({todolistId: todolist.id, title}))
+        // dispatch(createTaskTC({todolistId: todolist.id, title}))
+        dispatch(addTask({todolistId: todolist.id, title}))
     }
 
     return (

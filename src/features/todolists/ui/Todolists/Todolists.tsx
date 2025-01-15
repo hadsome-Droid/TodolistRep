@@ -5,14 +5,15 @@ import { useAppSelector } from "../../../../common/hooks/useAppSelector.ts"
 import { selectTodolists } from "../../model/reducer/todolistsSelectors.ts"
 import { useEffect } from "react"
 import { useAppDispatch } from "./../../../../common/hooks/useAppDispatch.ts"
-import { fetchTodolistsThunk } from "../../model/reducer/todolists/todolistsSlice.ts"
+import { fetchTodolistsThunk, getTodolists } from "../../model/reducer/todolists/todolistsSlice.ts"
 
 export const Todolists = () => {
   const todolists = useAppSelector(selectTodolists)
   const dispatch = useAppDispatch()
   console.log(todolists)
   useEffect(() => {
-        dispatch(fetchTodolistsThunk)
+        // dispatch(fetchTodolistsThunk)
+        dispatch(getTodolists())
   }, [])
 
   return (

@@ -26,6 +26,9 @@ const createSliceWithThunks = buildCreateSlice({ creators: { asyncThunk: asyncTh
 export const tasksSlice = createSliceWithThunks({
   name: "tasks",
   initialState,
+  selectors: {
+    selectTasks: state => state
+  },
   reducers: create => {
     const createAThunk = create.asyncThunk.withTypes<{ rejectValue: null }>()
     return {
@@ -196,6 +199,7 @@ export const tasksSlice = createSliceWithThunks({
 })
 
 export const tasksReducer = tasksSlice.reducer
+export const {selectTasks} = tasksSlice.selectors
 export const {
   updateTask,
   removeTask,

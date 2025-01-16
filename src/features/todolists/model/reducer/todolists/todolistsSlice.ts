@@ -16,6 +16,9 @@ const createSliceWithThunks = buildCreateSlice({ creators: { asyncThunk: asyncTh
 export const todolistsSlice = createSliceWithThunks({
   name: "todolists",
   initialState,
+  selectors: {
+    selectTodolists: state => state
+  },
   reducers: create => {
     const createAThunk = create.asyncThunk.withTypes<{ rejectValue: null }>()
     return {
@@ -154,7 +157,7 @@ export const todolistsSlice = createSliceWithThunks({
 })
 
 export const todolistsReducer = todolistsSlice.reducer
-
+export const {selectTodolists} = todolistsSlice.selectors
 export const {
   removeTodolist,
   changeTodolistFilter,

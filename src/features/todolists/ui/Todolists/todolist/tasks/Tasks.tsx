@@ -1,13 +1,13 @@
 import List from "@mui/material/List";
 import {Task} from "./task/Task.tsx";
 import {useAppSelector} from "../../../../../../common/hooks/useAppSelector.ts";
-import {selectTasks} from "../../../../model/reducer/tasksSelectors.ts";
+// import {selectTasks} from "../../../../model/reducer/tasksSelectors.ts";
 import { DomainTask } from "../../../../api/tasks/tasksApi.types.ts"
 import { DomainTodolist } from "../../../../api/todolistsApi.types.ts"
 import { TaskStatus } from "../../../../../../common/enums/enums.ts"
 import { useAppDispatch } from "../../../../../../common/hooks/useAppDispatch.ts"
 import { useEffect } from "react"
-import { fetchTasks, fetchTasksTC, getTasks } from "../../../../model/reducer/tasks/tasksSlice.ts"
+import { getTasks, selectTasks } from "../../../../model/reducer/tasks/tasksSlice.ts"
 
 type Props = {
     todolist: DomainTodolist

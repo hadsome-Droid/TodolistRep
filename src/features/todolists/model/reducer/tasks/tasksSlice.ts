@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import { tasksApi } from "../../../api/tasks/tasks.Api.ts"
+import { _tasksApi } from "../../../api/tasks/tasks.Api.ts"
 import { DomainTask, UpdateTaskDomainModel, UpdateTaskModel } from "../../../api/tasks/tasksApi.types.ts"
 import { ResultCode } from "../../../../../common/enums/enums.ts"
 import { AppDispatch, RootState } from "../../../../../app/store.ts"
@@ -36,7 +36,7 @@ export const tasksSlice = createSliceWithThunks({
         async (todolistId: string, { dispatch, rejectWithValue }) => {
           try {
             dispatch(setAppStatus({ status: "loading" }))
-            const res = await tasksApi.getTasks(todolistId)
+            const res = await _tasksApi.getTasks(todolistId)
             dispatch(setAppStatus({ status: "success" }))
             return { todolistId, tasks: res.data.items }
           } catch (error) {
@@ -54,7 +54,7 @@ export const tasksSlice = createSliceWithThunks({
         async (args: { todolistId: string, title: string }, { dispatch, rejectWithValue }) => {
           try {
             dispatch(setAppStatus({ status: "loading" }))
-            const res = await tasksApi.createTask(args)
+            const res = await _tasksApi.createTask(args)
             if (res.data.resultCode === ResultCode.Success) {
               dispatch(setAppStatus({ status: "success" }))
               return { task: res.data.data.item }
@@ -78,7 +78,7 @@ export const tasksSlice = createSliceWithThunks({
         async (args: { todolistId: string, taskId: string }, { dispatch, rejectWithValue }) => {
           try {
             dispatch(setAppStatus({ status: "loading" }))
-            const res = await tasksApi.deleteTask(args)
+            const res = await _tasksApi.deleteTask(args)
             if (res.data.resultCode === ResultCode.Success) {
             dispatch(setAppStatus({ status: "success" }))
             return args
@@ -128,7 +128,7 @@ export const tasksSlice = createSliceWithThunks({
               ...domainModel
             }
             dispatch(setAppStatus({ status: "loading" }))
-            const res = await tasksApi.updateTask({ todolistId, taskId, model })
+            const res = await _tasksApi.updateTask({ todolistId, taskId, model })
             if (res.data.resultCode === ResultCode.Success) {
               dispatch(setAppStatus({ status: "success" }))
               return args

@@ -11,9 +11,12 @@ import { useAppSelector } from "./../../common/hooks/useAppSelector.ts"
 import { useNavigate } from "react-router"
 import { useEffect } from "react"
 import { Path } from "./../../common/routing/routing.tsx"
-import { selectIsLoggedIn } from "../../features/auth/model/authSlice.ts"
+// import { selectIsLoggedIn } from "../../features/auth/model/authSlice.ts"
+import { useCreateTodolistMutation } from "../../features/todolists/api/todolistsApi.ts"
+import { selectIsLoggedIn } from "../appSlice.ts"
 
 export const Main = () => {
+  const [createTodolist, {data, error, isLoading}] = useCreateTodolistMutation()
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -21,7 +24,8 @@ export const Main = () => {
   const handleAddTodolist = (title: string) => {
 
     // dispatch(createTodolistThunk(title))
-    dispatch(addTodolist(title))
+    // dispatch(addTodolist(title))
+    createTodolist(title)
   }
 
   useEffect(() => {

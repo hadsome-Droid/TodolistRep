@@ -7,23 +7,27 @@ import {
 } from "../../../../model/reducer/todolists/todolistsSlice.ts"
 import { useAppDispatch } from "../../../../../../common/hooks/useAppDispatch.ts"
 import { DomainTodolist } from "../../../../api/todolistsApi.types.ts"
+import { useRemoveTodolistMutation, useUpdateTodolistMutation } from "../../../../api/todolistsApi.ts"
 
 type Props = {
   todolist: DomainTodolist
 }
 
 export const TodolistTitle = ({ todolist }: Props) => {
-
+  const [removeTodolist] = useRemoveTodolistMutation()
+  const [updateTodolist] = useUpdateTodolistMutation()
   const dispatch = useAppDispatch()
 
   const handlerRemoveTodolist = () => {
     // dispatch(deleteTodolistTC(todolist.id))
-    dispatch(removeTodolist(todolist.id))
+    // dispatch(removeTodolist(todolist.id))
+    removeTodolist(todolist.id)
   }
 
   const updateTodolistTitleHandler = (title: string) => {
     // dispatch(updateTodolistTC({ todolistId: todolist.id, title }))
-    dispatch(updateTodolist({ id: todolist.id, title }))
+    // dispatch(updateTodolist({ id: todolist.id, title }))
+    updateTodolist({ id: todolist.id, title })
   }
 
   return (

@@ -8,6 +8,7 @@ import { TaskStatus } from "../../../../../../common/enums/enums.ts"
 import { useAppDispatch } from "../../../../../../common/hooks/useAppDispatch.ts"
 import { useEffect } from "react"
 import { getTasks, selectTasks } from "../../../../model/reducer/tasks/tasksSlice.ts"
+import { useGetTasksQuery } from "../../../../api/tasks/tasks.Api.ts"
 
 type Props = {
     todolist: DomainTodolist
@@ -16,14 +17,16 @@ type Props = {
 export const Tasks = ({ todolist}: Props) => {
     const tasks = useAppSelector(selectTasks);
     const dispatch = useAppDispatch();
+    const {data} = useGetTasksQuery(todolist.id)
 
     useEffect(() => {
         // dispatch(fetchTasksTC(todolist.id))
         // dispatch(fetchTasks(todolist.id))
-        dispatch(getTasks(todolist.id))
+        // dispatch(getTasks(todolist.id))
     }, [])
 
-    let tasksForTodolist = tasks[todolist.id]
+    // let tasksForTodolist = tasks[todolist.id]
+    let tasksForTodolist = data?.items
 
 
     if (todolist.filter === 'active') {

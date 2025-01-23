@@ -5,7 +5,8 @@ import { Login } from "../../features/auth/ui/Login/Login.tsx"
 import { Page404 } from "../../common/components/page404"
 import { useAppSelector } from "./../../common/hooks/useAppSelector.ts"
 import App from "../../AppWithRedux.tsx"
-import { selectIsLoggedIn } from "../../features/auth/model/authSlice.ts"
+import { selectIsLoggedIn } from "../../app/appSlice.ts"
+// import { selectIsLoggedIn } from "../../features/auth/model/authSlice.ts"
 
 type Props = {
   children: ReactNode

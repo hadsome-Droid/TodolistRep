@@ -6,7 +6,8 @@ export type RequestStatus = "idle" | "loading" | "success" | "failed"
 const initialState = {
   themeMode: "dark" as ThemeMode,
   status: "idle" as RequestStatus,
-  error: null as string | null
+  error: null as string | null,
+  isLoggedIn: false,
 }
 
 export const appSlice = createSlice({
@@ -21,9 +22,16 @@ export const appSlice = createSlice({
     }),
     setAppError: create.reducer<{ error: string | null }>((state, action) => {
       state.error = action.payload.error
-    })
-  })
+    }),
+    setIsLoggedIn: create.reducer<{ isLoggedIn: boolean }>((state, action) => {
+      state.isLoggedIn = action.payload.isLoggedIn
+    }),
+  }),
+  selectors: {
+    selectIsLoggedIn: state => state.isLoggedIn,
+  }
 })
 
 export const appReducer = appSlice.reducer
-export const {changeTheme, setAppStatus, setAppError} = appSlice.actions
+export const {changeTheme, setAppStatus, setAppError, setIsLoggedIn} = appSlice.actions
+export const {selectIsLoggedIn} = appSlice.selectors

@@ -14,15 +14,15 @@ const initialState = {
   isInitialized: false
 }
 
-const createSliceWithThunks = buildCreateSlice({ creators: { asyncThunk: asyncThunkCreator } })
-
-export const authSlice = createSliceWithThunks({
-  name: "auth",
-  initialState,
-  selectors: {
-    selectIsLoggedIn: state => state.isLoggedIn,
-    selectIsInitialized: state => state.isInitialized
-  },
+// const createSliceWithThunks = buildCreateSlice({ creators: { asyncThunk: asyncThunkCreator } })
+//
+// export const authSlice = createSliceWithThunks({
+//   name: "auth",
+//   initialState,
+//   selectors: {
+//     selectIsLoggedIn: state => state.isLoggedIn,
+//     // selectIsInitialized: state => state.isInitialized
+//   },
   // reducers: {
   //   setIsLoggedIn: (state, action: PayloadAction<{isLoggedIn: boolean}>) => {
   //     state.isLoggedIn = action.payload.isLoggedIn
@@ -31,99 +31,99 @@ export const authSlice = createSliceWithThunks({
   //     state.isInitialized = action.payload.isInitialized
   //   },
   // },
-  reducers: create => {
-    const createAThunk = create.asyncThunk.withTypes<{ rejectValue: null }>()
-    return {
-      initializeApp: createAThunk(
-        async (_, { dispatch, rejectWithValue }) => {
-          try {
-            dispatch(setAppStatus({ status: "loading" }))
-            const res = await authApi.me()
-            if (res.data.resultCode === ResultCode.Success) {
-              dispatch(setAppStatus({ status: "success" }))
-              return { isLoggedIn: true }
-            } else {
-              handleServerAppError(res.data, dispatch)
-              return rejectWithValue(null)
-            }
-          } catch (e) {
-            handleServerNetworkError(e, dispatch)
-            return rejectWithValue(null)
-          }
-        },
-        {
-          fulfilled: (state, action) => {
-            state.isLoggedIn = action.payload.isLoggedIn
-          },
-          settled: (state) => {
-            state.isInitialized = true
-          }
-        }
-      ),
-      login: createAThunk(
-        async (data: LoginArgs, { dispatch, rejectWithValue }) => {
-          try {
-            dispatch(setAppStatus({ status: "loading" }))
-            const res = await authApi.login(data)
-            if (res.data.resultCode === ResultCode.Success) {
-              dispatch(setAppStatus({ status: "success" }))
-              localStorage.setItem("sn-token", res.data.data.token)
-              return { isLoggedIn: true }
-            } else {
-              handleServerAppError(res.data, dispatch)
-              return rejectWithValue(null)
-            }
-          } catch (e) {
-            handleServerNetworkError(e, dispatch)
-            return rejectWithValue(null)
-          }
-        },
-        {
-          fulfilled: (state, action) => {
-            state.isLoggedIn = action.payload.isLoggedIn
-          }
-        }
-      ),
-      logOut: createAThunk(
-        async (_, { dispatch, rejectWithValue }) => {
-          try {
-            dispatch(setAppStatus({ status: "loading" }))
-            const res = await authApi.logout()
-            if (res.data.resultCode === ResultCode.Success) {
-              dispatch(setAppStatus({ status: "success" }))
-              dispatch(clearTasks())
-              dispatch(clearTodolists())
-              localStorage.removeItem("sn-token")
-              return { isLoggedIn: false }
-            } else {
-              handleServerAppError(res.data, dispatch)
-              return rejectWithValue(null)
-            }
-          } catch (e) {
-            handleServerNetworkError(e, dispatch)
-            return rejectWithValue(null)
-          }
-        },
-        {
-          fulfilled: (state, action) => {
-            state.isLoggedIn = action.payload.isLoggedIn
-          }
-        }
-      )
+  // reducers: create => {
+  //   const createAThunk = create.asyncThunk.withTypes<{ rejectValue: null }>()
+  //   return {
+      // initializeApp: createAThunk(
+      //   async (_, { dispatch, rejectWithValue }) => {
+      //     try {
+      //       dispatch(setAppStatus({ status: "loading" }))
+      //       const res = await authApi.me()
+      //       if (res.data.resultCode === ResultCode.Success) {
+      //         dispatch(setAppStatus({ status: "success" }))
+      //         return { isLoggedIn: true }
+      //       } else {
+      //         handleServerAppError(res.data, dispatch)
+      //         return rejectWithValue(null)
+      //       }
+      //     } catch (e) {
+      //       handleServerNetworkError(e, dispatch)
+      //       return rejectWithValue(null)
+      //     }
+      //   },
+      //   {
+      //     fulfilled: (state, action) => {
+      //       state.isLoggedIn = action.payload.isLoggedIn
+      //     },
+      //     settled: (state) => {
+      //       state.isInitialized = true
+      //     }
+      //   }
+      // ),
+      // login: createAThunk(
+      //   async (data: LoginArgs, { dispatch, rejectWithValue }) => {
+      //     try {
+      //       dispatch(setAppStatus({ status: "loading" }))
+      //       const res = await authApi.login(data)
+      //       if (res.data.resultCode === ResultCode.Success) {
+      //         dispatch(setAppStatus({ status: "success" }))
+      //         localStorage.setItem("sn-token", res.data.data.token)
+      //         return { isLoggedIn: true }
+      //       } else {
+      //         handleServerAppError(res.data, dispatch)
+      //         return rejectWithValue(null)
+      //       }
+      //     } catch (e) {
+      //       handleServerNetworkError(e, dispatch)
+      //       return rejectWithValue(null)
+      //     }
+      //   },
+      //   {
+      //     fulfilled: (state, action) => {
+      //       state.isLoggedIn = action.payload.isLoggedIn
+      //     }
+      //   }
+      // ),
+      // logOut: createAThunk(
+      //   async (_, { dispatch, rejectWithValue }) => {
+      //     try {
+      //       dispatch(setAppStatus({ status: "loading" }))
+      //       const res = await authApi.logout()
+      //       if (res.data.resultCode === ResultCode.Success) {
+      //         dispatch(setAppStatus({ status: "success" }))
+      //         dispatch(clearTasks())
+      //         dispatch(clearTodolists())
+      //         localStorage.removeItem("sn-token")
+      //         return { isLoggedIn: false }
+      //       } else {
+      //         handleServerAppError(res.data, dispatch)
+      //         return rejectWithValue(null)
+      //       }
+      //     } catch (e) {
+      //       handleServerNetworkError(e, dispatch)
+      //       return rejectWithValue(null)
+      //     }
+      //   },
+      //   {
+      //     fulfilled: (state, action) => {
+      //       state.isLoggedIn = action.payload.isLoggedIn
+      //     }
+      //   }
+      // )
       // setIsLoggedIn: create.reducer<{ isLoggedIn: boolean }>((state, action) => {
       //   state.isLoggedIn = action.payload.isLoggedIn
       // }),
       // setIsInitialized: create.reducer<{ isInitialized: boolean }>((state, action) => {
       //   state.isInitialized = action.payload.isInitialized
       // })
-    }
-  }
-})
+//     }
+//   }
+// })
 
 // export const { setIsLoggedIn, setIsInitialized } = authSlice.actions
-export const { login, logOut, initializeApp } = authSlice.actions
-export const { selectIsLoggedIn, selectIsInitialized } = authSlice.selectors
-export const authReducer = authSlice.reducer
+// export const { login, logOut, initializeApp } = authSlice.actions
+// export const { selectIsLoggedIn, selectIsInitialized } = authSlice.selectors
+// export const authReducer = authSlice.reducer
 
 // export const loginTC = (data: LoginArgs) => (dispatch: Dispatch) => {
 //   dispatch(setAppStatus({ status: "loading" }))

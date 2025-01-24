@@ -2,8 +2,6 @@ import { AddItemForm } from "../../../../../common/components/addItemForm/Addite
 import { FilterTasksButtons } from "./filterTasksButton/FilterTasksButtons.tsx"
 import { Tasks } from "./tasks/Tasks.tsx"
 import { TodolistTitle } from "./todolistTitle/TodolistTitle.tsx"
-import { addTask, createTaskTC } from "../../../model/reducer/tasks/tasksSlice.ts"
-import { useAppDispatch } from "../../../../../common/hooks/useAppDispatch.ts"
 import { DomainTodolist } from "../../../api/todolistsApi.types.ts"
 import { useCreateTaskMutation } from "../../../api/tasks/tasks.Api.ts"
 
@@ -15,11 +13,8 @@ type Props = {
 export const Todolist = (props: Props) => {
   const { date, todolist } = props
   const [createTask] = useCreateTaskMutation()
-  const dispatch = useAppDispatch()
 
   const addTaskCallback = (title: string) => {
-    // dispatch(createTaskTC({todolistId: todolist.id, title}))
-    // dispatch(addTask({ todolistId: todolist.id, title }))
     createTask({ todolistId: todolist.id, title })
   }
 

@@ -1,22 +1,25 @@
 import Grid2 from "@mui/material/Grid2"
 import Paper from "@mui/material/Paper"
 import { Todolist } from "./todolist/Todolist.tsx"
-import { useAppSelector } from "../../../../common/hooks/useAppSelector.ts"
-// import { selectTodolists } from "../../model/reducer/todolistsSelectors.ts"
-import { useEffect } from "react"
-import { useAppDispatch } from "./../../../../common/hooks/useAppDispatch.ts"
-import { getTodolists, selectTodolists } from "../../model/reducer/todolists/todolistsSlice.ts"
 import { useGetTodolistsQuery } from "../../api/todolistsApi.ts"
+import { TodolistSkeleton } from "./todolist/skeletons/TodolistSkeleton/TodolistSkeleton.tsx"
 
 export const Todolists = () => {
-  // const todolists = useAppSelector(selectTodolists)
-  // const dispatch = useAppDispatch()
-  const {data: todolists} = useGetTodolistsQuery()
+  const {data: todolists, isLoading} = useGetTodolistsQuery()
 
-  // useEffect(() => {
-  //       // dispatch(fetchTodolistsThunk)
-  //       dispatch(getTodolists())
-  // }, [])
+  if(isLoading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '32px' }}>
+        {
+          Array(3)
+            .fill(null)
+            .map((_, id) => (
+              <TodolistSkeleton key={id} />
+            ))
+        }
+      </div>
+    )
+  }
 
   return (
     <>

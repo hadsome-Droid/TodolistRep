@@ -6,7 +6,6 @@ import FormGroup from "@mui/material/FormGroup"
 import FormLabel from "@mui/material/FormLabel"
 import Grid from "@mui/material/Grid"
 import TextField from "@mui/material/TextField"
-
 import { selectThemeMode } from "../../../../app/appSelectors"
 import { useAppSelector } from "./../../../../common/hooks/useAppSelector.ts"
 import { getTheme } from "./../../../../common/theme/theme.ts"
@@ -14,7 +13,6 @@ import Grid2 from "@mui/material/Grid2"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import s from "./Login.module.css"
 import { useAppDispatch } from "./../../../../common/hooks/useAppDispatch.ts"
-// import { login, loginTC, selectIsLoggedIn } from "../../model/authSlice.ts"
 import { useNavigate } from "react-router"
 import { useEffect } from "react"
 import { Path } from "./../../../../common/routing/routing.tsx"
@@ -47,9 +45,6 @@ export const Login = () => {
   } = useForm<LoginArgs>({ defaultValues: { email: "", password: "", rememberMe: false } })
 
   const onSubmit: SubmitHandler<LoginArgs> = data => {
-    // dispatch(loginTC(data))
-    // dispatch(login(data))
-    // reset()
     login(data)
       .then(res => {
         if (res.data?.resultCode === ResultCode.Success) {

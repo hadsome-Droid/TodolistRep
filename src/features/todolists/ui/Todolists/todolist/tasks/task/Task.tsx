@@ -3,17 +3,11 @@ import { Checkbox, IconButton } from "@mui/material"
 import { EditableSpan } from "../../../../../../../common/components/editableSpan/EditableSpan.tsx"
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import ListItem from "@mui/material/ListItem"
-import {
-  removeTask,
-  removeTaskTC, updateTask, updateTaskTC
-} from "../../../../../model/reducer/tasks/tasksSlice.ts"
 import { getListItemSx } from "./Task.styles.ts"
-import { useAppDispatch } from "../../../../../../../common/hooks/useAppDispatch.ts"
 import { DomainTask, UpdateTaskModel } from "../../../../../api/tasks/tasksApi.types.ts"
 import { DomainTodolist } from "../../../../../api/todolistsApi.types.ts"
 import { TaskStatus } from "../../../../../../../common/enums/enums.ts"
 import { useRemoveTaskMutation, useUpdateTaskMutation } from "../../../../../api/tasks/tasks.Api.ts"
-// import {EditableSpan} from "common/components";
 
 type Props = {
   task: DomainTask
@@ -23,11 +17,8 @@ type Props = {
 export const Task = ({ task, todolist }: Props) => {
   const [updateTask] = useUpdateTaskMutation()
   const [removeTask] = useRemoveTaskMutation()
-  const dispatch = useAppDispatch()
 
   const changeTaskTitle = (title: string) => {
-    // dispatch(updateTaskTC({ todolistId: todolist.id, taskId: task.id, domainModel: { title } }))
-    // dispatch(updateTask({ todolistId: todolist.id, taskId: task.id, domainModel: { title } }))
     const model: UpdateTaskModel = {
       status: task.status,
       title,
@@ -50,14 +41,11 @@ export const Task = ({ task, todolist }: Props) => {
       priority: task.priority,
       startDate: task.startDate
     }
-    // dispatch(updateTaskTC({ taskId: task.id, domainModel: { status }, todolistId: todolist.id }))
-    // dispatch(updateTask({ taskId: task.id, domainModel: { status }, todolistId: todolist.id }))
+
     updateTask({ taskId: task.id, model, todolistId: todolist.id })
   }
 
   const handleRemoveTask = () => {
-    // dispatch(removeTaskTC({ todolistId: todolist.id, taskId: task.id }))
-    // dispatch(removeTask({ todolistId: todolist.id, taskId: task.id }))
     removeTask({ todolistId: todolist.id, taskId: task.id })
   }
 

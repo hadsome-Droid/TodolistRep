@@ -9,7 +9,6 @@ import { ErrorSnackbar } from "./common/components/ErrorSnackbar/ErrorSnackbar.t
 import { Routing } from "./common/routing"
 import { useAppDispatch } from "./common/hooks/useAppDispatch.ts"
 import { useEffect, useState } from "react"
-// import { setIsLoggedIn } from "./features/auth/model/authSlice.ts"
 import CircularProgress from "@mui/material/CircularProgress"
 import { useMeQuery } from "./features/auth/api/authApi.ts"
 import { ResultCode } from "./common/enums/enums.ts"
@@ -17,16 +16,12 @@ import { setIsLoggedIn } from "./app/appSlice.ts"
 
 
 function App() {
-  // const test = useTodolistsStore()
   const { data, isLoading } = useMeQuery()
   const themeMode = useAppSelector(selectThemeMode)
-  // const isInitialized = useAppSelector(selectIsInitialized)
   const dispatch = useAppDispatch()
   const [isInitialized, setIsInitialized] = useState(false)
 
   useEffect(() => {
-    // dispatch(initializeAppTC())
-    // dispatch(initializeApp())
     if (!isLoading) {
       setIsInitialized(true)
       if (data?.resultCode === ResultCode.Success) {

@@ -1,12 +1,10 @@
-import React, { ReactNode } from "react"
-import { createBrowserRouter, Navigate, Outlet, Route, RouteObject, Routes } from "react-router"
+import { ReactNode } from "react"
+import { Navigate, Route, Routes } from "react-router"
 import { Main } from "../../app/main/Main.tsx"
 import { Login } from "../../features/auth/ui/Login/Login.tsx"
 import { Page404 } from "../../common/components/page404"
 import { useAppSelector } from "./../../common/hooks/useAppSelector.ts"
-import App from "../../AppWithRedux.tsx"
 import { selectIsLoggedIn } from "../../app/appSlice.ts"
-// import { selectIsLoggedIn } from "../../features/auth/model/authSlice.ts"
 
 type Props = {
   children: ReactNode
